@@ -21,21 +21,33 @@ public class Store {
     public Map<Product, Integer> getCart() {
         return cart;
     }
+    public double checkOut(){
+        double total = 0;
+        for(Map.Entry<Product,Integer> entry : cart.entrySet()){
+           total+= entry.getValue() * entry.getKey().getPrice();
+        }
+        return total;
+    }
      public void removeProdcutAndNumOfProdFromCart(Product product,Integer numToremove){
       Integer num =   cart.get(product);
       Integer numleft = num - numToremove;
-      cart.put(product,numToremove);
+      cart.put(product,numleft);
       Integer numInStore = availItems.get(product) + numToremove;
       availItems.put(product,numInStore);
 
      }
     public void addToCart(Product product, Integer value){
-        cart.put(product,value);
-        Integer i = availItems.get(product);
+        if(availItems.get(product) == null || availItems.get(product) == 0){
+            System.out.println(product.getName()+" is not in the store or is out of stock");
+        }else {
+            cart.put(product, value);
+            Integer i = availItems.get(product);
+
+            Integer numOfItemsLeftInStore = i - value;
+            availItems.put(product,numOfItemsLeftInStore);
+        }
 
 
-        Integer numOfItemsLeft = i - value;
-        availItems.put(product,numOfItemsLeft);
     }
 
     public void addToStore(Product product, Integer numOfProducts){
@@ -46,7 +58,7 @@ public class Store {
         return cart.size();
     }
 
-    public Integer getItemCountFromCart(String key){
+    public Integer getItemCountFromCart(Product key){
         return cart.get(key);
     }
 
