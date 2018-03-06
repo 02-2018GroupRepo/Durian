@@ -1,5 +1,5 @@
-# Durian
-Team Members
+Team Durian
+Team Members:
 Bob
 Shahar
 Rosslyn
