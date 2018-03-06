@@ -1,6 +1,6 @@
 Team Durian
 Team Members:
-1)Bob
+Bob
 Shahar
 Rosslyn
 Bryant
